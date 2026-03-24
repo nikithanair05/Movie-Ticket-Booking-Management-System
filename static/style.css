@@ -1,0 +1,240 @@
+/* ---------- Light Cinematic Dark Gradient Theme ---------- */
+
+/* Variables */
+:root{
+  --bg-top: #1a2238;       /* slate blue */
+  --bg-bottom: #0d1117;    /* dark slate */
+  --panel: rgba(255,255,255,0.08);
+  --card-bg: rgba(255,255,255,0.12);
+  --muted: #d0d7e2;
+  --text: #ffffff;
+  --accent: #4fc3f7;       /* light sky blue */
+  --accent-2: #ffd166;     /* warm gold */
+  --danger: #e63946;
+  --radius: 12px;
+}
+
+/* ---------- Global ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  line-height: 1.6;
+  font-size: 16px;
+  min-height: 100vh;
+}
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, transparent 60%, rgba(0,0,0,0.5) 100%);
+  z-index: 0;
+}
+.container, .container-fluid { position: relative; z-index: 1; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: linear-gradient(90deg, var(--bg-top), var(--bg-bottom));
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.navbar .navbar-brand {
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.navbar .nav-link {
+  color: var(--muted) !important;
+  font-weight: 600;
+}
+.navbar .nav-link:hover { color: var(--accent-2) !important; }
+
+/* ---------- Landing / Front Page ---------- */
+.front-page {
+  min-height: 100vh;                 /* take full viewport height */
+  width: 100%;                       /* full width */
+  margin: 0;                         /* remove gaps */
+  padding: 0;                        /* remove inner padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;            /* scale image to fill */
+  background-repeat: no-repeat;
+}
+
+.front-page .overlay {
+  background: rgba(0,0,0,0.55);
+  padding: 3rem 2rem;
+  border-radius: 14px;
+  max-width: 900px;
+}
+.front-page h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--text);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+.front-page p { color: var(--muted); }
+.btn-glow {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+  color: #071018;
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(255,255,255,0.5);
+}
+/* Make the "Browse Movies" hero button text white by default */
+.btn-cta,
+.btn-cta:link,
+.btn-cta:visited,
+.btn-glow,
+.btn-glow:link,
+.btn-glow:visited {
+  color: #ffffff !important;       /* ensure text is white */
+  text-decoration: none !important;
+}
+
+/* Keep hover effect (adjust if you use different hover styles) */
+.btn-cta:hover,
+.btn-glow:hover {
+  color: #071018 !important;       /* if your hover uses dark text on a bright background */
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
+  padding: 3rem 1rem;
+  border-radius: 10px;
+}
+.hero-title {
+  color: var(--text);
+  font-weight: 800;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+.hero-sub { color: var(--muted); }
+
+/* ---------- Movie Cards ---------- */
+.section-title {
+  font-weight: 800;
+  color: #ffffff !important;   /* force white */
+  margin-bottom: .75rem;
+}
+
+.movie-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display:flex;
+  flex-direction:column;
+}
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.card-img-top.movie-poster {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+.movie-card .card-body { padding:1rem; }
+.movie-card .card-title { font-weight: 800; color: var(--accent-2); }
+.movie-card .card-text { 
+  color: white;   /* light gray-white for readability */
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+/* Force movie description inside cards to be white */
+.movie-card .card-text {
+  color: #ffffff !important;    /* pure white */
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+/* ---------- Show Buttons ---------- */
+.shows-row { display:flex; gap:6px; flex-wrap:wrap; }
+.btn-show {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight:700;
+  font-size: .9rem;
+}
+.btn-show:hover {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #071018;
+}
+
+/* ---------- Seats ---------- */
+.seat {
+  display:inline-block;
+  margin:6px;
+  padding:8px 10px;
+  border-radius:8px;
+  border:2px solid var(--accent);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font-weight:700;
+  cursor:pointer;
+  transition: transform .08s ease;
+}
+.seat:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color:#071018;
+}
+.seat.booked {
+  background: #ffe6e6;
+  color: #8b1c1c;
+  border-color: var(--danger);
+  cursor:not-allowed;
+}
+
+/* ---------- Panels / Tables ---------- */
+.booking-panel {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+.table, .table th, .table td {
+  color: var(--text);
+  border-color: rgba(255,255,255,0.1);
+  background: transparent;
+}
+.alert {
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .hero { padding: 2rem 1rem; }
+  .card-img-top.movie-poster { height: 240px; }
+}
+.card-img-top.movie-poster {
+  width: 100%;
+  height: 380px;       /* taller so less cropping */
+  object-fit: cover;   /* keeps full area filled but may crop edges */
+  object-position: center;
+  display: block;
+  border-radius: 8px 8px 0 0;
+}

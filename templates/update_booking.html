@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Update Booking {{ booking['booking_id'] }}</h2>
+<p><strong>Movie:</strong> {{ movie['title'] }}</p>
+<p><strong>Showtime:</strong> {{ show['show_time'] }}</p>
+
+<form method="post">
+  <div class="seat-map mb-3">
+    {% for i in range(1, (show['total_seats']|int) + 1) %}
+      {% set is_booked = i in booked_seats %}
+      <label class="seat {% if is_booked %}booked{% endif %}">
+        {% if is_booked %}
+          <input type="checkbox" disabled> {{ i }}
+        {% else %}
+          <input type="checkbox" name="seats" value="{{ i }}"> {{ i }}
+        {% endif %}
+      </label>
+      {% if i % 10 == 0 %}<br>{% endif %}
+    {% endfor %}
+  </div>
+
+  <button class="btn btn-primary" type="submit">Update Booking</button>
+  <a href="{{ url_for('booking_history') }}?email={{ booking['email'] }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Booking History</h2>
+<form method="get" action="{{ url_for('booking_history') }}" class="mb-3">
+  <div class="input-group">
+    <input class="form-control" type="email" name="email" placeholder="Enter your email to view bookings" value="{{ email }}">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>
+
+{% if bookings %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Movie</th>
+        <th>Show</th>
+        <th>Seats</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in bookings %}
+        <tr>
+          <td>{{ b['booking_id'] }}</td>
+          <td>{{ b['movie'] }}</td>
+          <td>{{ b['show_time'] }}</td>
+          <td>{{ b['seats'] }}</td>
+          <td>
+            <div class="d-flex gap-2">
+              <!-- Update button -->
+              <a href="{{ url_for('update_booking', booking_id=b['booking_id']) }}" class="btn btn-sm btn-warning">Update</a>
+
+              <!-- Cancel button -->
+              <form method="post" action="{{ url_for('cancel_booking') }}">
+                <input type="hidden" name="booking_id" value="{{ b['booking_id'] }}">
+                <input type="hidden" name="email" value="{{ email }}">
+                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Cancel this booking?')">Cancel</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No bookings found. Use the box above to search by email.</p>
+{% endif %}
+{% endblock %}

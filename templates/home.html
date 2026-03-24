@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Landing / Front Page -->
+<div class="front-page"
+     style="background-image: url('https://png.pngtree.com/background/20230618/original/pngtree-blank-movie-ticket-with-popcorn-bucket-filmstrip-clapperboard-and-camera-in-picture-image_3709549.jpg');">
+
+  <div class="overlay d-flex flex-column align-items-center justify-content-center">
+    <h1 class="mb-3">🎬 Movie Ticket Booking System</h1>
+    <p class="lead mb-4">Book tickets, view movies, check seat availability and manage your bookings easily.</p>
+    <a href="{{ url_for('index') }}" class="btn btn-lg btn-glow px-5 py-3">Enter</a>
+  </div>
+</div>
+
+{% endblock %}

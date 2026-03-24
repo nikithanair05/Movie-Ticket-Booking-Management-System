@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ movie['title'] }}</h2>
+<p>{{ movie['description'] }}</p>
+
+<div class="mb-3">
+  <strong>Showtimes:</strong>
+  {% for show in shows %}
+    <a class="btn btn-sm {% if active_show and active_show['id']==show['id'] %}btn-success{% else %}btn-outline-secondary{% endif %} me-1 mb-1" href="{{ url_for('movie_detail', movie_id=movie['id']) }}?show_id={{ show['id'] }}">
+      {{ show['show_time'] }}
+    </a>
+  {% endfor %}
+</div>
+
+{% if active_show %}
+  <h4>Seats for {{ active_show['show_time'] }}</h4>
+  <form method="post" action="{{ url_for('book') }}">
+    <input type="hidden" name="movie_id" value="{{ movie['id'] }}">
+    <input type="hidden" name="show_id" value="{{ active_show['id'] }}">
+
+    <div class="mb-2">
+      <label for="name" class="form-label">Your name</label>
+      <input class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-2">
+      <label for="email" class="form-label">Email</label>
+      <input class="form-control" id="email" name="email" type="email" required>
+    </div>
+
+    <div class="seat-map mb-3">
+      {% for i in range(1, (active_show['total_seats']|int) + 1) %}
+        {% set is_booked = i in booked_seats %}
+        <label class="seat {% if is_booked %}booked{% endif %}">
+          {% if is_booked %}
+            <input type="checkbox" disabled> {{ i }}
+          {% else %}
+            <input type="checkbox" name="seats" value="{{ i }}"> {{ i }}
+          {% endif %}
+        </label>
+        {% if i % 10 == 0 %}<br>{% endif %}
+      {% endfor %}
+    </div>
+
+    <button class="btn btn-primary" type="submit">Book selected seat(s)</button>
+  </form>
+{% else %}
+  <p>No show selected.</p>
+{% endif %}
+{% endblock %}
