@@ -2,9 +2,14 @@
 
 A Movie Ticket Booking Management System developed as a DBMS mini project. This application provides a convenient platform for users to browse movies, explore show timings, select seats, and book movie tickets.
 
-## 🎥 Project Demo
+<h2 align="center">🎥 Watch Project Demo</h2>
 
-▶️ **Watch the Demo:** https://youtu.be/8iXJvSMcqjw
+<p align="center">
+  <a href="https://youtu.be/8iXJvSMcqjw">
+    <img src="https://img.youtube.com/vi/8iXJvSMcqjw/maxresdefault.jpg" width="700">
+  </a>
+</p>
+
 
 ## ✨ Features
 
@@ -27,7 +32,7 @@ A Movie Ticket Booking Management System developed as a DBMS mini project. This 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Python / Flask
 - **Database:** SQLite
-- **Template Engine:** Jinja2
+
 
 ## 📂 Project Structure
 
